@@ -22,7 +22,6 @@ Legend:
 
 ## 2. Backend – Security Layer 
 
-- [ ] Create `JwtAuthenticationFilter`
 - [ ] Create `SecurityConfig`
 
 ---
@@ -85,3 +84,4 @@ Legend:
 - [ ] Secrets removed from code
 - [ ] JWT secured endpoints
 - [ ] Clean UI
+
