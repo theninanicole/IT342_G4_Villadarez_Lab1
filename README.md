@@ -32,13 +32,7 @@ Open XAMPP Control Panel → Start MySQL.
 
 Create a database, e.g., miniapp_db.
 
-Configure application.properties (Spring Boot backend)
-
-spring.datasource.url=jdbc:mysql://localhost:3306/miniapp_db?useSSL=false&serverTimezone=UTC
-spring.datasource.username=root
-spring.datasource.password=  # your MySQL password if any
-spring.jpa.hibernate.ddl-auto=update
-
+Configure application.properties
 
 Run the backend
 
