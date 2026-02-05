@@ -70,28 +70,11 @@ npm start
 The app runs on http://localhost:3000
  and communicates with the backend for authentication.
 
-## Steps to Run Mobile App
+## List of API Endpoints
 
-(Optional: if you have a React Native app or similar)
-
-Open mobile app folder.
-
-Install dependencies:
-
-npm install
-
-
-Start the app (for iOS or Android):
-
-npx react-native run-android
-npx react-native run-ios
-
-
-Ensure the mobile app’s API URLs point to the backend (http://localhost:8080 or your machine’s IP on the same network).
-
-List of API Endpoints
-Endpoint	Method	Description
-/register	POST	Register a new user
-/login	POST	Authenticate user and return JWT
-/logout	POST	Invalidate JWT (optional)
-/profile	GET	Get the logged-in user’s profile (JWT required)
+| Endpoint   | Method | Description                                      |
+|------------|--------|--------------------------------------------------|
+| `/register` | POST   | Register a new user                              |
+| `/login`    | POST   | Authenticate user and return JWT                |
+| `/logout`   | POST   | Invalidate JWT (optional)                       |
+| `/profile`  | GET    | Get the logged-in user’s profile (JWT required) |
