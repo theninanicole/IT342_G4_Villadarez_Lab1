@@ -1,4 +1,4 @@
-# Mini Authentication App
+# Mini Authentication App 📱
 ## Project Description
 
 A mini authentication application that demonstrates a full-stack setup with ReactJS for the frontend, Spring Boot + Kotlin for the backend, and MySQL for the database.
@@ -63,6 +63,40 @@ npm start
 
 The app runs on http://localhost:3000
  and communicates with the backend for authentication.
+
+## Branch Naming Convention 
+
+All branch names must clearly identify the **Type**, the **Scope** (where the change occurs), and a short, descriptive name.
+
+Format: `<type>/<scope>/<description>`
+- Use **lowercase letters**
+- Use **hyphens (-)** for word separation
+- Keep descriptions **short and meaningful**
+
+| Main Task Type | Prefix | Scope Options | Description | Example Branch Name |
+| :--- | :--- | :--- | :--- | :--- |
+| **Feature** | `feature/` | `web/`, `backend/`, `mobile/` | For adding new user-facing functionality. | `feature/web/user-profile-ui` |
+| **Bug Fix** | `fix/` | `web/`, `backend/`, `mobile/` | For fixing bugs or unexpected behavior. | `fix/backend/auth-endpoint-bug` |
+| **Technical** | `tech/` | `web/`, `backend/`, `mobile/` | For non-functional changes such as refactoring, optimization, or internal improvements. | `tech/web/optimize-image-loading` |
+| **Chore** | `chore/` | `web/`, `backend/`, `mobile/` | For maintenance tasks (cleanup, documentation, minor updates). | `chore/backend/update-dependencies` |
+| **Setup** | `setup/` | `web/`, `backend/`, `mobile/`, `infra/`, `deps/` | For initial setup, configuration, or environment changes. | `setup/backend/add-flyway-migration` |
+
+---
+
+### Branch Naming Rules
+- Always follow the `<type>/<scope>/<description>` format
+- Avoid vague names like `test`, `temp`, or `new-branch`
+- Do not include personal names in branch names
+- Delete branches after they are merged
+
+---
+
+### Example Usage
+```bash
+git checkout -b feature/backend/user-authentication
+git commit -m "Add JWT-based user authentication"
+git push origin feature/backend/user-authentication
+```
 
 ## List of API Endpoints
 
