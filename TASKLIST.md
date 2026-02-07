@@ -8,8 +8,6 @@
 - [x] Completed  
 - [ ] To Do  
 
----
-
 ## 1. Backend – Core Authentication
 - [x] Create `User` entity  
 - [x] Create `UserRepository`  
@@ -18,20 +16,14 @@
 - [x] Implement `AuthService`  
 - [x] Implement `AuthController`  
 
----
-
 ## 2. Backend – Security Layer
 - [x] Configure Spring Security (`SecurityConfig`)  
 - [x] Secure protected endpoints using JWT  
 
----
-
-## 3. Backend – DTOs & Validation
+## 3. Backend – DTOs
 - [x] Create `RegisterRequest`  
 - [x] Create `LoginRequest`  
 - [x] Create `AuthResponse`  
-
----
 
 ## 4. Frontend – React Web App
 
@@ -49,31 +41,25 @@
 - [x] Send JWT in `Authorization` header  
 - [x] Protect routes  
 
----
-
 ## 5. Mobile – Android Kotlin App
 
 ### UI Pages
-- [] Login page  
-- [] Register page  
-- [] Profile page  
-- [] Logout confirmation modal  
+- [ ] Login page  
+- [ ] Register page  
+- [ ] Profile page  
+- [ ] Logout confirmation modal  
 
 ### API Integration
-- [] Connect `/login` API  
-- [] Connect `/register` API  
-- [] Connect `/profile` API  
-- [] Store JWT in `SharedPreferences` / `DataStore`  
-- [] Send JWT in `Authorization` header  
-- [] Protect routes  
-
----
+- [ ] Connect `/login` API  
+- [ ] Connect `/register` API  
+- [ ] Connect `/profile` API  
+- [ ] Store JWT in `SharedPreferences` / `DataStore`  
+- [ ] Send JWT in `Authorization` header  
+- [ ] Protect routes  
 
 ## 6. Security Enhancements
 - [x] Hash passwords using BCrypt  
 - [ ] Handle token expiration (web and mobile)  
-
----
 
 ## 7. Testing
 - [x] Test user registration flow  
@@ -82,9 +68,8 @@
 - [ ] Test invalid JWT handling  
 - [ ] Test expired JWT handling  
 
----
-
 ## 8. Documentation
 - [x] Update `README.md`  
-- [x] Add API request/response examples  
-- [x] Add system architecture diagrams  
+- [ ] Add API request/response examples  
+- [x] Add system architecture diagrams on /docs
+
