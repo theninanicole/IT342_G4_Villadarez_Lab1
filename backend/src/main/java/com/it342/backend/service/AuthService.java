@@ -16,24 +16,23 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider tokenProvider;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtTokenProvider tokenProvider) {
+    public AuthService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtTokenProvider tokenProvider) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
     }
 
     public AuthResponse registerUser(RegisterRequest req) {
-        // Check if username already exists
         if (userRepository.existsByUsername(req.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
 
-        // Check if email already exists
         if (userRepository.existsByEmail(req.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
 
-        // Create new user
         User user = new User();
         user.setUsername(req.getUsername());
         user.setEmail(req.getEmail());
@@ -43,30 +42,28 @@ public class AuthService {
 
         userRepository.save(user);
 
-        // Generate token
         String token = tokenProvider.createToken(user.getUsername());
-
         return new AuthResponse(token, user.getUsername(), user.getEmail());
     }
 
     public AuthResponse authenticate(LoginRequest req) {
-        // Find user by username
-        User user = userRepository.findByUsername(req.getUsername())
-            .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
-        // Validate password
+        String identifier = req.getUsername(); // username or email
+
+        User user = userRepository.findByUsername(identifier)
+            .orElseGet(() ->
+                userRepository.findByEmail(identifier)
+                    .orElseThrow(() ->
+                        new RuntimeException("Invalid username or password")
+                    )
+            );
+
         if (!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid username or password");
         }
 
-        // Generate token
         String token = tokenProvider.createToken(user.getUsername());
-
         return new AuthResponse(token, user.getUsername(), user.getEmail());
-    }
-
-    public void logout(String token) {
-        tokenProvider.invalidateToken(token);
     }
 
     public User getUserProfile(String username) {

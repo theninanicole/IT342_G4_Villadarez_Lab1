@@ -5,60 +5,42 @@ import com.it342.backend.dto.LoginRequest;
 import com.it342.backend.dto.RegisterRequest;
 import com.it342.backend.model.User;
 import com.it342.backend.service.AuthService;
+import com.it342.backend.security.JwtTokenProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     private final AuthService authService;
+    private final JwtTokenProvider tokenProvider;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, JwtTokenProvider tokenProvider) {
         this.authService = authService;
+        this.tokenProvider = tokenProvider;
     }
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest req) {
-        try {
-            AuthResponse response = authService.registerUser(req);
-            return ResponseEntity.ok(response);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(authService.registerUser(req));
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest req) {
-        try {
-            AuthResponse response = authService.authenticate(req);
-            return ResponseEntity.ok(response);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @PostMapping("/logout")
-    public ResponseEntity<Void> logout(@RequestHeader("Authorization") String authHeader) {
-        try {
-            String token = authHeader.replace("Bearer ", "");
-            authService.logout(token);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(authService.authenticate(req));
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<User> getProfile(@RequestParam String username) {
-        try {
-            User user = authService.getUserProfile(username);
-            // Don't send password to client
-            user.setPassword(null);
-            return ResponseEntity.ok(user);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<User> profile(@RequestHeader("Authorization") String authHeader) {
+
+        String token = authHeader.replace("Bearer ", "");
+        String username = tokenProvider.getUsername(token);
+
+        User user = authService.getUserProfile(username);
+        user.setPassword(null);
+
+        return ResponseEntity.ok(user);
     }
 }
