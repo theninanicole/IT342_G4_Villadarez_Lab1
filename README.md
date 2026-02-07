@@ -43,6 +43,7 @@ Using IDE (IntelliJ, VS Code): Open BackendApplication.java → Run.
 OR using Maven (if installed):
 
 cd backend
+
 mvn spring-boot:run
 
 
@@ -79,6 +80,7 @@ Configure API Base URL:
 Update the backend API URL to use your machine’s local IP address:
 ```kotlin
 const val BASE_URL = "http://192.168.1.100:8080/"
+```
 
 Sync Gradle:
 
