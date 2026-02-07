@@ -1,7 +1,7 @@
 # Mini Authentication App 📱
 ## Project Description
 
-A mini authentication application that demonstrates a full-stack setup with ReactJS for the frontend, Spring Boot + Kotlin for the backend, and MySQL for the database.
+A mini authentication application that demonstrates a full-stack setup with ReactJS for the frontend, Spring Boot for the backend, Kotlin for the mobile, and MySQL for the database.
 It supports:
 
 User registration and login
@@ -16,7 +16,9 @@ This project can be used as a base for learning authentication flows in modern w
 
 Frontend: ReactJS, HTML, CSS, JavaScript
 
-Backend: Spring Boot (Java/Kotlin), Spring Data JPA, JWT
+Backend: Spring Boot, Spring Data JPA, JWT
+
+Mobile: Kotlin
 
 Database: MySQL (via XAMPP)
 
@@ -63,6 +65,30 @@ npm start
 
 The app runs on http://localhost:3000
  and communicates with the backend for authentication.
+
+## Steps to Run Mobile App
+
+Open Mobile Project:
+
+- Open **Android Studio**
+- Click **Open**
+- Select the `mobile/` project folder
+
+Configure API Base URL:
+
+Update the backend API URL to use your machine’s local IP address:
+```kotlin
+const val BASE_URL = "http://192.168.1.100:8080/"
+
+Sync Gradle:
+
+Allow Android Studio to finish downloading and syncing Gradle dependencies
+
+Run the Application:
+
+Connect an Android device or start an emulator
+
+Click Run ▶ in Android Studio
 
 ## Branch Naming Convention 
 
