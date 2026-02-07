@@ -15,7 +15,7 @@ public class JwtTokenProvider {
     @Value("${jwt.secret:mySecretKeyForJWTTokenGenerationThisIsVerySecureAndLongEnough}")
     private String secretKey;
 
-    @Value("${jwt.validity:86400000}") // 24 hours in milliseconds
+    @Value("${jwt.validity:86400000}") 
     private Long validityInMilliseconds;
 
     private Key getSigningKey() {
@@ -56,8 +56,7 @@ public class JwtTokenProvider {
     }
 
     public void invalidateToken(String token) {
-        // In a production environment, you would typically add this token to a blacklist
-        // stored in Redis or a database with an expiration time
-        // For this implementation, we'll leave it as a placeholder
+        // In a real application, you would store invalidated tokens in a database or cache
+        // and check against that list during validation. For simplicity, this method is a no-op.
     }
 }
