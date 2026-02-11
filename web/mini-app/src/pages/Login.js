@@ -14,7 +14,6 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const handleSubmit = async (e) => {
@@ -34,8 +32,8 @@ const Login = () => {
     setLoading(true);
     try {
       await login(formData);
-    } catch {
-      setErrors({ submit: 'Invalid username or password' });
+      navigate('/profile');
+    } catch (error) {
     } finally {
       setLoading(false);
     }
@@ -62,10 +60,9 @@ const Login = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className={errors.username ? 'error' : ''}
                 placeholder="Enter username or email"
+                required
               />
-              {errors.username && <span className="error-message">{errors.username}</span>}
             </div>
 
             <div className="form-group">
@@ -76,8 +73,8 @@ const Login = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className={errors.password ? 'error' : ''}
                   placeholder="**********"
+                  required
                 />
                 <button
                   type="button"
@@ -87,12 +84,7 @@ const Login = () => {
                   {showPassword ? <EyeOffIcon /> : <EyeIcon />}
                 </button>
               </div>
-              {errors.password && <span className="error-message">{errors.password}</span>}
             </div>
-
-            {errors.submit && (
-              <div className="error-message submit-error">{errors.submit}</div>
-            )}
 
             <button type="submit" className="btn-primary" disabled={loading}>
               {loading ? 'Signing In...' : 'Login'}
