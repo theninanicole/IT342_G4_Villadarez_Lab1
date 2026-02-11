@@ -121,7 +121,7 @@ You should see:
 
 ---
 
-## 🔧 Backend Configuration
+## Backend Configuration
 
 ### Step 1: Configure Database Connection
 
@@ -165,7 +165,7 @@ logging.level.org.springframework.security=DEBUG
 
 ---
 
-## 🚀 Steps to Run Backend
+## Steps to Run Backend
 
 ### Option 1: Using IDE (IntelliJ IDEA / Eclipse)
 
@@ -225,7 +225,7 @@ You should get a response (even if it's an error - it means the server is runnin
 
 ---
 
-## 🌐 Steps to Run Web App
+## Steps to Run Web App
 
 ### Step 1: Install Dependencies
 
@@ -266,7 +266,7 @@ You should see:
 
 ---
 
-## 📱 Steps to Run Mobile App
+## Steps to Run Mobile App
 
 ### Step 1: Open Project in Android Studio
 
@@ -350,7 +350,7 @@ ip addr show
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Public Endpoints (No Authentication Required)
 
@@ -449,7 +449,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
 
 ---
 
-## 🌳 Branch Naming Convention
+## Branch Naming Convention
 
 All branch names must clearly identify the **Type**, **Scope**, and a short **Description**.
 
@@ -496,7 +496,7 @@ git push origin --delete feature/backend/user-authentication
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend Issues
 
