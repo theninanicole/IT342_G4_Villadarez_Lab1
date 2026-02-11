@@ -8,6 +8,8 @@ import com.it342.backend.service.AuthService;
 import com.it342.backend.security.JwtTokenProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -39,6 +41,18 @@ public class AuthController {
         String username = tokenProvider.getUsername(token);
 
         User user = authService.getUserProfile(username);
+        user.setPassword(null);
+
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        User user = authService.getUserProfile(username);
+
         user.setPassword(null);
 
         return ResponseEntity.ok(user);
