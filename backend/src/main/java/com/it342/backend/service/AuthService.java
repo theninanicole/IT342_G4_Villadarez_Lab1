@@ -42,7 +42,7 @@ public class AuthService {
 
         userRepository.save(user);
 
-        String token = tokenProvider.createToken(user.getUsername());
+        String token = tokenProvider.generateToken(user.getUsername());
         return new AuthResponse(token, user.getUsername(), user.getEmail());
     }
 
@@ -62,7 +62,7 @@ public class AuthService {
             throw new RuntimeException("Invalid username or password");
         }
 
-        String token = tokenProvider.createToken(user.getUsername());
+        String token = tokenProvider.generateToken(user.getUsername());
         return new AuthResponse(token, user.getUsername(), user.getEmail());
     }
 
