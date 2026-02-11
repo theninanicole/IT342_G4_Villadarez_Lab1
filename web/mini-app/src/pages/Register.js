@@ -95,6 +95,8 @@ const Register = () => {
     try {
       const { confirmPassword, ...payload } = formData;
       await register(payload);
+      // Redirect to login after successful registration
+      navigate('/login');
     } catch {
       setErrors({
         submit: 'Registration failed. Username or email may already exist.',
