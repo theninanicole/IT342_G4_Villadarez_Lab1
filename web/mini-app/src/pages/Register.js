@@ -31,7 +31,7 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: '', submit: '' }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const validateForm = () => {
@@ -40,43 +40,36 @@ const Register = () => {
     const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
     const emailRegex = /^\S+@\S+\.\S+$/;
 
-    // First name
     if (!formData.first_name.trim()) {
       newErrors.first_name = 'First name is required';
     } else if (!nameRegex.test(formData.first_name)) {
       newErrors.first_name = 'First name contains invalid characters';
     }
 
-    // Last name
     if (!formData.last_name.trim()) {
       newErrors.last_name = 'Last name is required';
     } else if (!nameRegex.test(formData.last_name)) {
       newErrors.last_name = 'Last name contains invalid characters';
     }
 
-    // Username
     if (!formData.username.trim()) {
       newErrors.username = 'Username is required';
     } else if (!usernameRegex.test(formData.username)) {
-      newErrors.username =
-        'Username must be at least 3 characters and contain only letters, numbers, or _';
+      newErrors.username = 'Username must be at least 3 characters and contain only letters, numbers, or _';
     }
 
-    // Email
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
 
-    // Password
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 8) {
       newErrors.password = 'Password must be at least 8 characters';
     }
 
-    // Confirm password
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
     } else if (formData.confirmPassword !== formData.password) {
@@ -95,12 +88,8 @@ const Register = () => {
     try {
       const { confirmPassword, ...payload } = formData;
       await register(payload);
-      // Redirect to login after successful registration
       navigate('/login');
-    } catch {
-      setErrors({
-        submit: 'Registration failed. Username or email may already exist.',
-      });
+    } catch (error) {
     } finally {
       setLoading(false);
     }
@@ -223,15 +212,9 @@ const Register = () => {
                 </button>
               </div>
               {errors.confirmPassword && (
-                <span className="error-message">
-                  {errors.confirmPassword}
-                </span>
+                <span className="error-message">{errors.confirmPassword}</span>
               )}
             </div>
-
-            {errors.submit && (
-              <div className="error-message submit-error">{errors.submit}</div>
-            )}
 
             <button type="submit" className="btn-primary" disabled={loading}>
               {loading ? 'Creating Account...' : 'Sign Up'}
